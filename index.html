@@ -1,227 +1,223 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SCAN-SFSMM</title>
-
-<!-- Fonte -->
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-
-<!-- Favicon -->
-<link rel="icon" type="image/png" href="images/icon.png">
+<title>SCAN - SFS Mod Manager</title>
 
 <style>
-:root {
-    --bg: #0b0f1a;
-    --card: #111827;
-    --accent: #3b82f6;
-    --text: #cbd5e1;
-}
-
 body {
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Rajdhani', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow-x: hidden;
 }
 
-/* Estrelas */
-.star { position: fixed; width: 2px; height: 2px; background: white; opacity: 0; animation: twinkle linear infinite; }
-@keyframes twinkle {0% {opacity:0;}50% {opacity:1;}100% {opacity:0;}}
+header {
+    text-align: center;
+    padding: 60px 20px;
+}
 
-/* Estrela cadente */
-.shooting { position: fixed; width: 3px; height: 3px; background: white; box-shadow:0 0 10px white; transform: rotate(45deg); animation: shoot 1s linear forwards;}
-@keyframes shoot {to {transform: translate(400px,400px); opacity:0;}}
+h1 {
+    color: #58a6ff;
+    font-size: 48px;
+}
 
-/* Header */
-.header {display:flex; justify-content: space-between; padding: 20px 40px;}
-.header a.credit {font-size: 12px; color: #64748b; text-decoration:none;}
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
 
-/* Hero */
-.hero {text-align:center; padding:100px 20px;}
-.hero h1 {font-size:70px; color:white;}
-.hero p {max-width:800px; margin:20px auto; line-height:1.8;}
-.btn {margin-top:20px; display:inline-block; padding:12px 25px; background: var(--accent); color:white; text-decoration:none; border-radius:6px;}
+section {
+    margin-bottom: 50px;
+}
 
-/* Section */
-.section {padding:80px 20px;}
-.container {max-width:1000px; margin:auto;}
-.card {background: var(--card); padding:30px; border-radius:8px; margin-top:20px;}
-.card p {line-height:1.8;}
-img {width:100%; border-radius:6px; margin-top:15px; box-shadow:0 0 20px #000;}
-footer {text-align:center; padding:40px; color:#64748b;}
+button {
+    background: #238636;
+    border: none;
+    padding: 14px 24px;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #2ea043;
+}
+
+img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+    border: 1px solid #30363d;
+}
+
+pre {
+    background: #161b22;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #30363d;
+    overflow-x: auto;
+}
+
+.comet {
+    position: fixed;
+    width: 2px;
+    height: 80px;
+    background: linear-gradient(white, transparent);
+    opacity: 0.6;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    from { transform: translateY(-100px); }
+    to { transform: translateY(110vh) translateX(-200px); }
+}
 </style>
 </head>
 
 <body>
 
-<div class="header">
-    <div><b>SCAN</b></div>
-    <select onchange="setLang(this.value)">
-        <option value="auto">AUTO</option>
-        <option value="pt">PT</option>
-        <option value="en">EN</option>
-    </select>
-    <a class="credit" target="_blank" href="https://icons8.com/icon/VGQlJM067vkN/download">Baixar</a> ícone por <a class="credit" target="_blank" href="https://icons8.com">Icons8</a>
-</div>
-
-<!-- BLOCO 1 -->
-<div class="hero">
+<header>
     <h1>SCAN</h1>
-    <p data-i18n="desc"></p>
-    <a href="downloads/scan.zip" class="btn" data-i18n="download"></a>
-</div>
+    <p>SFS Comprehensive Archive Network</p>
 
-<!-- BLOCO 2 -->
-<div class="section">
+    <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1203307371/035b78a1-0914-4850-8d54-0c96b2594ecb?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-04-15T19%3A19%3A16Z&rscd=attachment%3B%20filename%3DSCAN.zip&rsct=application%2Foctet-stream">
+        <button>Download SCAN</button>
+    </a>
+</header>
+
 <div class="container">
 
-<h2 data-i18n="info"></h2>
+<section>
+<h2>About SCAN</h2>
+<p>
+SCAN (SFS Comprehensive Archive Network) is an automated mod manager designed for the PC version of Spaceflight Simulator.
+It replaces manual mod installation with a structured and reliable system.
+</p>
 
-<div class="card">
-<h3 data-i18n="tutorial_download"></h3>
-<p data-i18n="how_download"></p>
-</div>
+<p>
+Instead of manually copying files into game directories, SCAN reads structured metadata and performs installation automatically.
+This eliminates common user errors and ensures that mods are always placed correctly.
+</p>
+</section>
 
-<div class="card">
-<h3 data-i18n="tutorial_use"></h3>
-<p data-i18n="how_use"></p>
-</div>
+<section>
+<h2>User Interface</h2>
+<p>
+The SCAN interface is designed to be simple and functional.
+Users can manage mods, view available content, and control installation without interacting with game files directly.
+</p>
 
-<!-- Imagens mostrando UI -->
-<div class="card">
-<h3 data-i18n="ui_title"></h3>
-<img src="images/ui.png">
-<p data-i18n="ui_desc"></p>
-<img src="images/mod.png">
-<p data-i18n="mod_desc"></p>
-</div>
+<img src="https://raw.githubusercontent.com/Del-SFS/Del-SFS.github.io/main/SCAN-SFS/imags/ui.png">
+</section>
 
-<div class="card">
-<h3 data-i18n="system"></h3>
-<p data-i18n="sys1"></p>
-<p data-i18n="sys2"></p>
-<p data-i18n="sys3"></p>
-</div>
+<section>
+<h2>How the System Works</h2>
+<p>
+SCAN connects to a structured repository containing mod metadata.
+Each mod is described using a standardized format that includes version, type, dependencies, and conflicts.
+</p>
 
-<div class="card">
-<h3 data-i18n="why"></h3>
-<p data-i18n="why1"></p>
-<p data-i18n="why2"></p>
-<p data-i18n="why3"></p>
-</div>
+<p>
+The application reads this data and determines how the mod should be installed.
+Files are automatically mapped to the correct directories based on their type.
+</p>
 
-<div class="card">
-<h3 data-i18n="warning"></h3>
-<p data-i18n="warn1"></p>
-<p data-i18n="warn2"></p>
-</div>
+<ul>
+<li>Automatic file placement</li>
+<li>Dependency resolution</li>
+<li>Conflict detection</li>
+<li>Consistent installation process</li>
+</ul>
+</section>
+
+<section>
+<h2>Mod Format</h2>
+<p>
+All mods follow a strict structure to ensure compatibility with SCAN.
+</p>
+
+<pre>
+ModName.zip
+ ├── ModName.zip
+ └── mod.json
+</pre>
+
+<p>
+The internal ZIP must contain only mod files such as DLLs, assets, or textures.
+It must not include unnecessary folders.
+</p>
+
+<img src="https://raw.githubusercontent.com/Del-SFS/Del-SFS.github.io/main/SCAN-SFS/imags/mod.png">
+</section>
+
+<section>
+<h2>Why SCAN</h2>
+<p>
+Manual mod installation is error-prone and inconsistent.
+Different mods require different file placements, and users often make mistakes.
+</p>
+
+<p>
+SCAN solves this by standardizing the entire process and automating installation.
+This creates a reliable environment for both users and mod creators.
+</p>
+
+<ul>
+<li>Reduces installation errors</li>
+<li>Improves compatibility</li>
+<li>Simplifies mod management</li>
+<li>Creates a scalable ecosystem</li>
+</ul>
+</section>
+
+<section>
+<h2>Ecosystem</h2>
+<p>
+SCAN is part of a larger system designed to improve mod distribution.
+</p>
+
+<ul>
+<li><b>SCAN</b> – Mod installer</li>
+<li><b>ModCenterSFS</b> – Mod repository</li>
+<li><b>GMJS</b> – Mod creation tool</li>
+</ul>
+
+<p>
+Together, these components form a complete pipeline for creating, distributing, and installing mods.
+</p>
+</section>
+
+<section>
+<h2>Installation</h2>
+<p>
+Download SCAN using the button above and run the executable.
+The program will prepare the environment and allow you to install mods automatically.
+</p>
+
+<p>
+No manual configuration or file management is required.
+</p>
+</section>
 
 </div>
-</div>
-
-<!-- BLOCO 3 -->
-<div class="section">
-<div class="container">
-<h2 data-i18n="credits"></h2>
-<div class="card">
-<p><b>Del</b></p>
-<p>DelDoSFS@outlook.com</p>
-<p data-i18n="collab"></p>
-</div>
-</div>
-</div>
-
-<footer>SCAN • by Del</footer>
 
 <script>
-// Idioma automático
-function getLang(){ let l=navigator.language.slice(0,2); return translations[l]?l:"en"; }
-const translations={
-pt:{
-desc:"O SCAN (Spaceflight Comprehensive Archive Network) é um sistema completo para gerenciar mods do Spaceflight Simulator, automatizando instalação, organização e manutenção. Com ele, qualquer usuário consegue instalar mods de forma segura e eficiente, sem erros e sem complicações.",
-download:"Baixar SCAN",
-info:"Informações",
-tutorial_download:"Como baixar",
-how_download:"Baixe o arquivo ZIP, extraia-o para uma pasta de sua escolha e execute o programa principal. É rápido e seguro, permitindo acesso imediato ao sistema.",
-tutorial_use:"Como usar",
-how_use:"Selecione a pasta do jogo, escolha os mods desejados e clique em Aplicar mudanças. O SCAN organiza e instala automaticamente todos os arquivos necessários.",
-ui_title:"Interface do SCAN",
-ui_desc:"A interface principal mostra todos os mods disponíveis, permitindo navegar, selecionar e instalar de forma intuitiva.",
-mod_desc:"Durante a instalação, o SCAN gerencia arquivos e dependências automaticamente para evitar erros.",
-system:"Como funciona",
-sys1:"Conecta-se a um repositório online seguro e atualizado.",
-sys2:"Resolve dependências e conflitos entre mods automaticamente.",
-sys3:"Instala arquivos nos locais corretos dentro do jogo sem intervenção manual.",
-why:"Por que usar o SCAN",
-why1:"Evita erros comuns de instalação manual e economiza tempo.",
-why2:"Centraliza o gerenciamento de todos os mods em um só lugar.",
-why3:"É escalável e preparado para futuras melhorias.",
-warning:"Avisos",
-warn1:"O SCAN ainda está em desenvolvimento ativo e pode mudar frequentemente.",
-warn2:"Procurando colaboradores interessados em ajudar no projeto.",
-credits:"Créditos",
-collab:"Projeto aberto a colaboração."
-},
-en:{
-desc:"SCAN (Spaceflight Comprehensive Archive Network) is a complete system to manage mods for Spaceflight Simulator. It automates installation, organization, and maintenance, making it easy and safe for anyone to install mods without errors.",
-download:"Download SCAN",
-info:"Information",
-tutorial_download:"How to download",
-how_download:"Download the ZIP file, extract it to a folder of your choice, and run the main program. Quick and safe, allowing immediate access to the system.",
-tutorial_use:"How to use",
-how_use:"Select the game folder, choose the desired mods, and click Apply Changes. SCAN automatically organizes and installs all necessary files.",
-ui_title:"SCAN Interface",
-ui_desc:"The main interface displays all available mods, allowing intuitive navigation, selection, and installation.",
-mod_desc:"During installation, SCAN manages files and dependencies automatically to prevent errors.",
-system:"How it works",
-sys1:"Connects to a secure, up-to-date online repository.",
-sys2:"Automatically resolves mod dependencies and conflicts.",
-sys3:"Installs files into the correct game folders without manual intervention.",
-why:"Why use SCAN",
-why1:"Avoids common manual installation errors and saves time.",
-why2:"Centralizes management of all mods in one place.",
-why3:"Scalable and ready for future improvements.",
-warning:"Notices",
-warn1:"SCAN is under active development and may change frequently.",
-warn2:"Looking for collaborators to help the project.",
-credits:"Credits",
-collab:"Open for collaboration."
-}
-};
+function createComet() {
+    const comet = document.createElement("div");
+    comet.classList.add("comet");
 
-function setLang(l){
- if(l==="auto") l=getLang();
- document.querySelectorAll("[data-i18n]").forEach(el=>{
-  let k=el.getAttribute("data-i18n");
-  if(translations[l][k]) el.innerText=translations[l][k];
- });
- localStorage.setItem("lang",l);
-}
-setLang(localStorage.getItem("lang")||"auto");
+    comet.style.left = Math.random() * window.innerWidth + "px";
+    comet.style.animationDuration = (6 + Math.random() * 6) + "s";
 
-// Estrelas
-for(let i=0;i<150;i++){
- let s=document.createElement("div");
- s.className="star";
- s.style.left=Math.random()*100+"vw";
- s.style.top=Math.random()*100+"vh";
- s.style.animationDuration=(Math.random()*3+2)+"s";
- document.body.appendChild(s);
+    document.body.appendChild(comet);
+
+    setTimeout(() => comet.remove(), 12000);
 }
 
-// Estrelas cadentes
-setInterval(()=>{
- if(Math.random()<0.3){
-  let star=document.createElement("div");
-  star.className="shooting";
-  star.style.left=Math.random()*50+"vw";
-  star.style.top=Math.random()*30+"vh";
-  document.body.appendChild(star);
-  setTimeout(()=>star.remove(),1000);
- }
-},4000);
+setInterval(createComet, 1500);
 </script>
 
 </body>
