@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SCAN - SFS Mod Manager</title>
+<title>SCAN - SFS Comprehensive Archive Network</title>
 
 <style>
 body {
@@ -14,12 +14,18 @@ body {
 
 header {
     text-align: center;
-    padding: 60px 20px;
+    padding: 70px 20px;
 }
 
 h1 {
     color: #58a6ff;
-    font-size: 48px;
+    font-size: 52px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    opacity: 0.7;
+    font-size: 18px;
 }
 
 .container {
@@ -32,25 +38,32 @@ section {
     margin-bottom: 60px;
 }
 
+h2 {
+    color: #58a6ff;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+}
+
+ul {
+    margin-top: 10px;
+}
+
 button {
     background: #238636;
     border: none;
-    padding: 14px 24px;
+    padding: 14px 26px;
     color: white;
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 15px;
 }
 
 button:hover {
     background: #2ea043;
-}
-
-img {
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 15px;
-    border: 1px solid #30363d;
 }
 
 pre {
@@ -58,15 +71,17 @@ pre {
     padding: 15px;
     border-radius: 6px;
     border: 1px solid #30363d;
+    overflow-x: auto;
 }
 
+/* COMETAS MELHORADOS */
 .comet {
     position: fixed;
-    width: 3px;
+    width: 2px;
     height: 120px;
     background: linear-gradient(white, rgba(255,255,255,0));
-    opacity: 0.9;
-    filter: drop-shadow(0 0 6px white);
+    opacity: 0.8;
+    filter: drop-shadow(0 0 8px white);
     animation: fall linear infinite;
 }
 
@@ -75,7 +90,7 @@ pre {
         transform: translateY(-150px);
     }
     to {
-        transform: translateY(120vh) translateX(-300px);
+        transform: translateY(120vh) translateX(-250px);
     }
 }
 </style>
@@ -85,9 +100,9 @@ pre {
 
 <header>
     <h1>SCAN</h1>
-    <p>SFS Comprehensive Archive Network</p>
+    <p class="subtitle">SFS Comprehensive Archive Network</p>
 
-    <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1203307371/035b78a1-0914-4850-8d54-0c96b2594ecb?sp=r&sv=2018-11-09&sr=b&spr=https">
+    <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1203307371/035b78a1-0914-4850-8d54-0c96b2594ecb">
         <button>Download SCAN</button>
     </a>
 </header>
@@ -97,56 +112,59 @@ pre {
 <section>
 <h2>Overview</h2>
 <p>
-SCAN (SFS Comprehensive Archive Network) is a structured and automated mod management system for the PC version of Spaceflight Simulator.
-Its primary goal is to replace manual installation workflows with a deterministic and reproducible system.
+SCAN is a structured mod management system designed for the PC version of Spaceflight Simulator.
+It replaces manual installation workflows with a deterministic and automated process.
 </p>
 
 <p>
-Traditional mod installation requires users to manually extract files and place them into specific directories.
-This process is error-prone and inconsistent, especially when dealing with multiple mods, dependencies, or conflicting assets.
-SCAN eliminates these issues by enforcing a standardized format and automating the entire installation pipeline.
+Instead of relying on users to manually place files into the correct directories, SCAN interprets structured metadata and performs all operations programmatically.
+This ensures consistency across installations and eliminates common configuration errors.
 </p>
 </section>
 
 <section>
-<h2>Interface</h2>
+<h2>System Architecture</h2>
 <p>
-The user interface of SCAN is designed to expose only the necessary controls while abstracting file system complexity.
-Users interact with mods as structured entries rather than raw files.
+The SCAN ecosystem is based on a data-driven architecture.
+All mod operations are derived from structured JSON metadata, allowing the application to remain predictable and extensible.
 </p>
 
 <p>
-This abstraction allows SCAN to maintain consistency and ensure that every installation follows the same rules.
-</p>
-
-<img src="https://raw.githubusercontent.com/Del-SFS/Del-SFS.github.io/main/SCAN-SFS/imags/ui.png">
-</section>
-
-<section>
-<h2>Core System</h2>
-<p>
-At its core, SCAN operates on structured metadata defined in JSON format.
-Each mod entry contains essential information such as version, type, dependencies, and compatibility constraints.
-</p>
-
-<p>
-During installation, SCAN parses this metadata and determines the correct destination paths for each file.
-This eliminates ambiguity and ensures that all assets are placed correctly within the game directory.
+Each mod entry defines its own installation rules, dependencies, and compatibility constraints.
+SCAN evaluates this data before executing any file operations.
 </p>
 
 <ul>
-<li>Deterministic installation logic</li>
-<li>Automatic directory mapping</li>
-<li>Structured metadata parsing</li>
-<li>Consistent mod handling</li>
+<li>Metadata-driven installation</li>
+<li>Deterministic execution model</li>
+<li>Separation between data and logic</li>
 </ul>
+</section>
+
+<section>
+<h2>Installation Model</h2>
+<p>
+SCAN maps mod components to predefined directories based on their type.
+This removes ambiguity and guarantees that files are always placed in the correct location.
+</p>
+
+<ul>
+<li>DLL → Mods directory</li>
+<li>Parts → Custom Assets/Parts</li>
+<li>Textures → Texture Packs</li>
+<li>Systems → Custom Solar Systems</li>
+</ul>
+
+<p>
+This mapping is enforced programmatically and cannot be altered by user error.
+</p>
 </section>
 
 <section>
 <h2>Mod Packaging Standard</h2>
 <p>
-SCAN enforces a strict packaging format to ensure compatibility across all mods.
-Every mod must follow the same structural pattern.
+To ensure compatibility, SCAN enforces a strict packaging format.
+All mods must follow the same structural pattern.
 </p>
 
 <pre>
@@ -156,72 +174,72 @@ ModName.zip
 </pre>
 
 <p>
-The inner archive must contain only the raw mod files (DLLs, assets, textures, etc).
-Nested directories are not allowed as they introduce ambiguity in file placement.
+The internal archive must contain only raw mod files.
+Nested directories introduce ambiguity and are not allowed.
 </p>
-
-<img src="https://raw.githubusercontent.com/Del-SFS/Del-SFS.github.io/main/SCAN-SFS/imags/mod.png">
 </section>
 
 <section>
-<h2>Dependency and Conflict Handling</h2>
+<h2>Dependency and Conflict Resolution</h2>
 <p>
-SCAN is designed to support complex mod environments where multiple mods interact.
-Each mod can declare dependencies and conflicts, allowing SCAN to evaluate compatibility before installation.
+SCAN supports complex mod environments by allowing each mod to declare dependencies and conflicts.
 </p>
 
 <p>
-This prevents scenarios where incompatible mods overwrite each other or break the game state.
+Before installation, SCAN evaluates these relationships to prevent incompatible configurations.
 </p>
 
 <ul>
-<li>Dependency resolution system</li>
-<li>Conflict detection before install</li>
 <li>Pre-install validation</li>
+<li>Dependency enforcement</li>
+<li>Conflict prevention</li>
 </ul>
 </section>
 
 <section>
 <h2>Automation Pipeline</h2>
 <p>
-SCAN is part of a broader ecosystem that includes tools for mod creation and repository management.
-</p>
-
-<p>
-The pipeline consists of:
+SCAN is part of a unified ecosystem designed to standardize mod development and distribution.
 </p>
 
 <ul>
-<li>GMJS → Generates valid mod.json files</li>
-<li>ModCenterSFS → Stores structured mod data</li>
-<li>SCAN → Installs and manages mods</li>
+<li>GMJS → Generates structured mod definitions</li>
+<li>ModCenterSFS → Stores mod metadata</li>
+<li>SCAN → Executes installation and management</li>
 </ul>
 
 <p>
-This pipeline ensures that all components operate using the same standards, reducing inconsistencies.
+This pipeline ensures that all components operate under the same rules and formats.
 </p>
 </section>
 
 <section>
-<h2>Installation Process</h2>
+<h2>Execution Flow</h2>
 <p>
-To use SCAN, simply download the application and execute it.
-The system will automatically prepare the environment and allow mod installation.
+When SCAN runs, it performs the following sequence:
 </p>
 
+<ul>
+<li>Load repository metadata</li>
+<li>Parse mod definitions</li>
+<li>Validate dependencies and conflicts</li>
+<li>Determine file mappings</li>
+<li>Execute installation</li>
+</ul>
+
 <p>
-No manual file manipulation is required, and all operations are handled internally by the application.
+Each step is deterministic, ensuring reproducible results across different systems.
 </p>
 </section>
 
 <section>
-<h2>Project Objective</h2>
+<h2>Objective</h2>
 <p>
-The long-term goal of SCAN is to create a fully standardized and automated ecosystem for mod distribution.
+The objective of SCAN is to create a reliable and scalable infrastructure for mod distribution.
 </p>
 
 <p>
-By enforcing strict formats and automating installation, SCAN enables scalability and reliability for both developers and users.
+By enforcing strict standards and automating installation, SCAN reduces fragmentation and improves the overall modding experience.
 </p>
 </section>
 
@@ -233,14 +251,14 @@ function createComet() {
     comet.classList.add("comet");
 
     comet.style.left = Math.random() * window.innerWidth + "px";
-    comet.style.animationDuration = (8 + Math.random() * 8) + "s"; // mais lento
+    comet.style.animationDuration = (10 + Math.random() * 10) + "s";
 
     document.body.appendChild(comet);
 
-    setTimeout(() => comet.remove(), 16000);
+    setTimeout(() => comet.remove(), 20000);
 }
 
-setInterval(createComet, 2000); // menos frequente
+setInterval(createComet, 2500);
 </script>
 
 </body>
